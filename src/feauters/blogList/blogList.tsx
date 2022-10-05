@@ -27,9 +27,9 @@ const BlogList = () => {
 	}
 
 	return (
-		<div className='blog'>
+		<main className='blog'>
 			{renderBlogs()}
-		</div>
+		</main>
 	)
 }
 

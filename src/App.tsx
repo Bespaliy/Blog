@@ -1,4 +1,6 @@
-import BlogList from './feauters/blogList/blogList'
+import BlogList from './feauters/blogList/blogList';
+import CreatePanel from './feauters/createPanel/createPanel';
+
 import './App.css'
 
 function App() {
@@ -6,6 +8,7 @@ function App() {
   return (
     <>
       <BlogList />
+      <CreatePanel />
     </>
   )
 }
