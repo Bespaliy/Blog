@@ -1,0 +1,51 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "date": "01.04.2022",
+      "title": "Test",
+      "hashtags": [
+        "#test1",
+        "#test2"
+      ],
+      "likes": 106,
+      "text": "loreloremloremloremloremloremloremloremloremloremloremm"
+    },
+    {
+      "id": 2,
+      "date": "01.04.2022",
+      "title": "Test",
+      "hashtags": [
+        "#test1",
+        "#test2"
+      ],
+      "likes": 157,
+      "text": "loreloremloremloremloremloremloremloremloremloremloremm"
+    },
+    {
+      "id": 3,
+      "date": "01.04.2022",
+      "title": "Test",
+      "hashtags": [
+        "#test1",
+        "#test2"
+      ],
+      "likes": 71,
+      "text": "loreloremloremloremloremloremloremloremloremloremloremm"
+    },
+    {
+      "id": 4,
+      "date": "22.04.2022",
+      "title": "This Week In React #118: Gatsby, Beta Docs, Reactivity, Lazy Maps, Ezno, Whyframe, Reassure, Node.js, TypeScript, WASM...",
+      "hashtags": [
+        "#test1",
+        "#test2",
+        "#test3",
+        "#test4",
+        "#test5"
+      ],
+      "likes": 55,
+      "text": "loreloremloremloremloremloremloremloremloremloremloremm"
+    }
+  ]
+}
