@@ -22,13 +22,23 @@
     padding: 10px;
 }
 
-.panel_tags div {
+.panel_tags .panel_tags-main {
     display: flex;
     justify-content: space-between;
 }
 
 .panel_tags .btn_3d {
     width: 45%;
+}
+
+.hashtags-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 13px;
+}
+
+.hashtag {
+    padding: 10px;
 }
 
 #tags {
