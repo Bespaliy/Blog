@@ -9,8 +9,17 @@
     background-repeat: no-repeat;
 }
 
-.btn-like > svg:hover {
+.btn-like > svg {
+    fill: white;
+    stroke: black;
+    stroke-width: 40px;
+    width: 1.1em;
+}
+
+.btn-like > svg:active {
     fill: red;
+    stroke: none;
+    stroke-width: 0;
 }
 
 .blog {
