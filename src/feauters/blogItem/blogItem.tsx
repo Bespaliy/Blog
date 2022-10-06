@@ -4,7 +4,7 @@ import { Blog } from "../../common/type/blogs.type";
 import ButtonActivites from '../buttonActivites/buttonActivites';
 
 interface BlogItemProps {
-  id: number;
+  id: string;
   date: string;
   title: string;
   hashtags: string[];

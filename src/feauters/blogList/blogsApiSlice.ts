@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-import { Blog } from '../../common/type/blogs.type';
+import { Blog, BlogStub } from '../../common/type/blogs.type';
+import { yymmdd } from '../../common/utils/date';
 
 interface BlogsState {
   blogs: Blog[];
@@ -44,8 +45,30 @@ export const blogsApiSlice = createApi({
         }),
         invalidatesTags: ['Blogs']
       }),
+      addBlog: builder.mutation<BlogStub, Partial<BlogStub>>({
+        query: (blogStub) => {
+          const { title, text, hashtags } = blogStub;
+          const blog: Blog = {
+            title: title!,
+            text: text!,
+            hashtags: hashtags!,
+            id: nanoid(12),
+            date: yymmdd,
+            likes: 0 
+          }
+          return {
+            url: `/blogs`,
+            method: 'POST',
+            body: blog
+          }
+        },
+        invalidatesTags: ['Blogs']
+      })
     };
   },
 });
 
-export const { useFetchBlogsQuery, useUpdateLikeMutation } = blogsApiSlice;
+export const { 
+  useFetchBlogsQuery, 
+  useUpdateLikeMutation,
+  useAddBlogMutation } = blogsApiSlice;

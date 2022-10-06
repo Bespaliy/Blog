@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useAddBlogMutation } from '../blogList/blogsApiSlice';
+import { BlogStub } from '../../common/type/blogs.type';
 import './createPanel.css';
 
 interface FormInputs {
@@ -11,6 +13,7 @@ interface FormInputs {
 const CreatePanel = () => {
 
   const [hashtags, setHashtags] = useState<string[]>([]);
+  const [addBlog] = useAddBlogMutation();
 
   const {
     register,
@@ -23,9 +26,16 @@ const CreatePanel = () => {
     reValidateMode: 'onChange'
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = (data: any) => {
-    reset();
-    setHashtags(() => []);
+  const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs) => {
+    const { text, title } = data;
+    const blogStub: BlogStub = { text, title, hashtags };
+    
+    addBlog(blogStub)
+      .unwrap()
+      .finally(() => {
+        reset();
+        setHashtags(() => []);
+      });
   }
 
   return (
