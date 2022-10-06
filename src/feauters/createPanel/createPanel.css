@@ -19,7 +19,7 @@
 #title {
     width: 100%;
     font-size: 20px;
-    padding: 15px;
+    padding: 10px;
 }
 
 .panel_tags div {
@@ -34,7 +34,12 @@
 #tags {
     width: 40%;
     font-size: 20px;
-    padding: 15px; 
+    padding: 10px; 
+}
+
+input, textarea {
+    border-color: rgba(128, 128, 128, 0.534);
+    border-radius: 20px;
 }
 
 #text {

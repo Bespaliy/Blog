@@ -1,15 +1,16 @@
 
 interface ButtonActivitesProps {
-	src: string;
+	src?: string;
+	Child?: JSX.Element;
 	alt: string;
 	count: number;
 	handlerOnCLick?: () => void;
 }
 
-const ButtonActivites = ({ src, alt, count, handlerOnCLick }: ButtonActivitesProps) => {
+const ButtonActivites = ({ Child, src, alt, count, handlerOnCLick }: ButtonActivitesProps) => {
 	return (
 		<button className='btn btn-like' onClick={handlerOnCLick}>
-			<img src={src} alt={alt} />
+			{Child ? Child : <img src={src} alt={alt} />}
 			<p className='saves'>{count}</p>
 		</button>
 	)

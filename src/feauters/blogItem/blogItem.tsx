@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { FaComment, FaHeart, FaBookmark } from 'react-icons/fa'
 import { Blog } from "../../common/type/blogs.type";
 import ButtonActivites from '../buttonActivites/buttonActivites';
 
@@ -33,17 +34,17 @@ const BlogItem = (props: BlogItemProps) => {
       <div className='blog-body_likes'>
         <div className='blog-body_likes-left'>
           <ButtonActivites 
-            src={"../../public/love.png"}
+            Child={<FaHeart />}
             alt={"number of likes"}
             count={likes}
             handlerOnCLick={() => handleUpdateLike({ ...blog, likes: Number(likes) + 1 })} />
           <ButtonActivites 
-            src={"../../public/chat-balloon.png"}
+            Child={<FaComment />}
             alt={"number of likes"}
             count={90} />
         </div>
         <ButtonActivites 
-          src={"../../public/save-instagram.png"}
+          Child={<FaBookmark />}
           alt={"number of likes"}
           count={90} />
       </div>

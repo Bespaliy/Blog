@@ -9,12 +9,8 @@
     background-repeat: no-repeat;
 }
 
-.btn-like > img {
-    max-height: 20px;
-}
-
-.btn-like > img:hover {
-    filter: sepia(100%);
+.btn-like > svg:hover {
+    fill: red;
 }
 
 .blog {
