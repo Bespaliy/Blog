@@ -32,7 +32,7 @@ export const HashtagsContainer = styled.div`
     };
     justify-content: space-between;
 `
-export const HashtagsListStyle = styled.p`
+export const HashtagsListStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-top: 13px;
