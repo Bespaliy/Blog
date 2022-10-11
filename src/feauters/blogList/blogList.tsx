@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useFetchBlogsQuery, useUpdateLikeMutation } from './blogsApiSlice';
 import BlogItem from '../blogItem/blogItem';
 import { Blog } from '../../common/type/blogs.type';
+import { BlogListContainer } from './blogList.style';
 
 const BlogList = () => {
 
@@ -27,9 +28,9 @@ const BlogList = () => {
 	}
 
 	return (
-		<main className='blog'>
+		<BlogListContainer>
 			{renderBlogs()}
-		</main>
+		</BlogListContainer>
 	)
 }
 

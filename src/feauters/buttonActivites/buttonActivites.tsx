@@ -1,3 +1,4 @@
+import { ButtonWraper } from './buttonActivites.style';
 
 interface ButtonActivitesProps {
 	src?: string;
@@ -9,10 +10,10 @@ interface ButtonActivitesProps {
 
 const ButtonActivites = ({ Child, src, alt, count, handlerOnCLick }: ButtonActivitesProps) => {
 	return (
-		<button className='btn btn-like' onClick={handlerOnCLick}>
+		<ButtonWraper className='btn btn-like' onClick={handlerOnCLick}>
 			{Child ? Child : <img src={src} alt={alt} />}
 			<p className='saves'>{count}</p>
-		</button>
+		</ButtonWraper>
 	)
 }
 

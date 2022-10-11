@@ -1,96 +1,89 @@
-import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useState, useRef } from 'react';
 import { useAddBlogMutation } from '../blogList/blogsApiSlice';
 import { BlogStub } from '../../common/type/blogs.type';
-import './createPanel.css';
+import { Panel, PanelContent, PanelSubmit, HashtagsContainer, HashtagsListStyle } from './createPanel.style';
+import Button from '../../common/components/Button';
+import Input from '../../common/components/Input';
+import Textarea from '../../common/components/Textarea';
 
-interface FormInputs {
-  title: string;
-  text: string;
-  hashtag: string;
-}
+type FormEvent = React.FormEvent<HTMLFormElement>;
 
 const CreatePanel = () => {
 
   const [hashtags, setHashtags] = useState<string[]>([]);
+  const [title, setTitle] = useState<string>('');
+  const [text, setText] = useState<string>('');
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const [addBlog] = useAddBlogMutation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    getValues,
-    setValue
-  } = useForm<FormInputs>({
-    reValidateMode: 'onChange'
-  });
+  const handleAddHashtag = () => {
+    const value = inputRef.current?.value || '';
+    if (value[0] !== '#') return;
+    setHashtags((prev) => [...prev, value]);
+    inputRef.current!.value = '#';
+  }
 
-  const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs) => {
-    const { text, title } = data;
+  const resetForm = () => {
+    setTitle(() => '');
+    setHashtags(() => []);
+    setText(() => '');
+  }
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log({ text, title, hashtags });
     const blogStub: BlogStub = { text, title, hashtags };
-    
     addBlog(blogStub)
       .unwrap()
       .finally(() => {
-        reset();
-        setHashtags(() => []);
+        resetForm();
       });
   }
 
   return (
-    <aside className="panel">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="panel_title">
-          <label htmlFor="title">BLOG TITLE</label>
-          <input
-            id="title"
-            type="text"
-            {...register('title', {
-              required: 'Title is required',
-            })} />
-        </div>
-        <div className="panel_text">
-          <label htmlFor="text">TEXT OF BLOG</label>
-          <textarea id="title" {...register('text', {
-            required: 'Text is required',
-          })} ></textarea>
-        </div>
-        <div className="panel_tags">
-          <label htmlFor="tag">TAGS OF BLOG</label>
-          <div className='panel_tags-main'>
-            <input id="tags" defaultValue={'#'} {...register('hashtag')} />
-            <button
-              type='button'
-              className='btn btn_3d'
-              onClick={() => {
-                const value = getValues('hashtag');
-                if (value[0] !== '#') return;
-                setHashtags((prev) => [...prev, value]);
-                setValue('hashtag', '#');
-              }}>
-              ADD TAGS!
-            </button>
-          </div>
-          <div className='hashtags-list'>
-            {hashtags.map((tags, index) => {
-              return <Hashtag key={`${tags}.${index}`} name={tags}/>
-            })}
-          </div>
-        </div>
-        <div className="panel_submit">
-          <button type='submit' className='btn btn_3d'>CREATE BLOG!</button>
-        </div>
+    <Panel>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <PanelContent>
+          <Input label={'CHOOSE TITLE'} value={title} name={'title'} setValue={setTitle} />
+        </PanelContent>
+
+        <PanelContent>
+          <Textarea label={'PRINT TEXT'} value={text} name={'text'} setValue={setText} />
+        </PanelContent>
+
+        <PanelContent>
+          <HashtagsContainer>
+            <Input name={'tags'} defaultValue={'#'} inputRef={inputRef} />
+            <Button type='button' name={'ADD TAGS!'} onClick={handleAddHashtag} />
+          </HashtagsContainer>
+          <HashtagList hashtags={hashtags} />
+        </PanelContent>
+
+        <PanelSubmit>
+          <Button type='submit' name={'CREATE BLOG!'} />
+        </PanelSubmit>
       </form>
-    </aside>
+    </Panel>
   )
 }
 
 const Hashtag = ({ name }: { name: string }) => {
   return (
-    <p className="hashtag">
+    <p>
       {name}
     </p>
+  );
+}
+
+const HashtagList = ({ hashtags }: { hashtags: string[] }) => {
+  return (
+    <HashtagsListStyle>
+      {hashtags.map((tags, index) => {
+        return <Hashtag key={`${tags}.${index}`} name={tags} />
+      })}
+    </HashtagsListStyle>
   );
 }
 

@@ -2,6 +2,13 @@ import { memo } from "react";
 import { FaComment, FaHeart, FaBookmark } from 'react-icons/fa'
 import { Blog } from "../../common/type/blogs.type";
 import ButtonActivites from '../buttonActivites/buttonActivites';
+import { 
+  BlogContainer, 
+  BlogHeader, BlogTitle, 
+  BlogHastags,
+  BlogLikes,
+  BlogLikesLeft
+} from './blogItem.style';
 
 interface BlogItemProps {
   id: string;
@@ -20,19 +27,19 @@ const BlogItem = (props: BlogItemProps) => {
   const blog: Blog = { id, date, title, hashtags, likes, text };
 
   return (
-    <div className='blog-body'>
-      <div className='blog-body_header'>
-        <p className='name'>Auther Lastname</p>
-        <p className='date'>{date}</p>
-      </div>
-      <div className='blog-body_title'>
+    <BlogContainer>
+      <BlogHeader>
+        <p>Auther Lastname</p>
+        <p>{date}</p>
+      </BlogHeader>
+      <BlogTitle>
         <p className='title'>{title}</p>
-      </div>
-      <div className='blog-body_hashtags'>
+      </BlogTitle>
+      <BlogHastags>
         {hashtags.map((hash) => <p key={hash} className='hashtags'>{hash}</p>)}
-      </div>
-      <div className='blog-body_likes'>
-        <div className='blog-body_likes-left'>
+      </BlogHastags>
+      <BlogLikes>
+        <BlogLikesLeft>
           <ButtonActivites 
             Child={<FaHeart />}
             alt={"number of likes"}
@@ -42,13 +49,13 @@ const BlogItem = (props: BlogItemProps) => {
             Child={<FaComment />}
             alt={"number of likes"}
             count={90} />
-        </div>
+        </BlogLikesLeft>
         <ButtonActivites 
           Child={<FaBookmark />}
           alt={"number of likes"}
           count={90} />
-      </div>
-    </div>
+      </BlogLikes>
+    </BlogContainer>
   )
 }
 
