@@ -1,26 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { Blog, BlogStub } from '../../common/type/blogs.type';
 import { yymmdd } from '../../common/utils/date';
 
-interface BlogsState {
+export interface BlogsState {
   blogs: Blog[];
 }
-
-const initialState: BlogsState = {
-  blogs: []
-}
-
-export const blogsSlice = createSlice({
-  name: 'blogs',
-  initialState,
-  reducers: {
-    addLike: state => {
-      state.blogs
-    }
-  }
-})
 
 export const blogsApiSlice = createApi({
   reducerPath: 'api',
@@ -68,7 +54,10 @@ export const blogsApiSlice = createApi({
   },
 });
 
+export const selectBlogsResult = blogsApiSlice.endpoints.fetchBlogs.select();
+
+
 export const { 
   useFetchBlogsQuery, 
   useUpdateLikeMutation,
-  useAddBlogMutation } = blogsApiSlice;
+  useAddBlogMutation, } = blogsApiSlice;

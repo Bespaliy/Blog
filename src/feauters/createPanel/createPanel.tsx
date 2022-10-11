@@ -46,7 +46,7 @@ const CreatePanel = () => {
     <Panel>
       <form onSubmit={(e) => handleSubmit(e)}>
         <PanelContent>
-          <Input label={'CHOOSE TITLE'} value={title} name={'title'} setValue={setTitle} />
+          <Input label={'CHOOSE TITLE'} value={title} name={'title'} setValue={() => setTitle} />
         </PanelContent>
 
         <PanelContent>

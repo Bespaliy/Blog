@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Panel = styled.aside`
-    position: absolute;
+    /* position: absolute;
     right: 3%;
     top: 15%;
-    width: 30%;
+    width: 30%; */
 `;
 
 export const Section = styled.div`

@@ -9,12 +9,13 @@ interface InputProp {
   value?: string;
   defaultValue?: string;
   inputRef?: RefInput;
+  type?: string; 
   setValue?: (value: React.SetStateAction<string>) => void;
 }
 
 const Input = (props: InputProp) => {
 
-  const { label, name, value, defaultValue, inputRef, setValue } = props;
+  const { label, name, value, defaultValue, inputRef, setValue, type } = props;
 
   const handleChangeInput = (e: InputEvent) => {
     if (setValue) setValue(() => e.target.value);
@@ -24,8 +25,9 @@ const Input = (props: InputProp) => {
   return (
     <>
       {label ? <label htmlFor={name}>{label}</label> : null}
-      <InputStyle 
-        id={name} 
+      <InputStyle
+        id={name}
+        type={type}
         defaultValue={defaultValue} 
         value={value}
         ref={inputRef}
